@@ -19,6 +19,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
     excalidrawRef,
     onCollabButtonClick,
     isCollaborating = false,
+    collabUrl,
     onPointerUpdate,
     renderTopRightUI,
     renderFooter,
@@ -84,6 +85,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
           excalidrawRef={excalidrawRef}
           onCollabButtonClick={onCollabButtonClick}
           isCollaborating={isCollaborating}
+          collabUrl={collabUrl}
           onPointerUpdate={onPointerUpdate}
           renderTopRightUI={renderTopRightUI}
           renderFooter={renderFooter}

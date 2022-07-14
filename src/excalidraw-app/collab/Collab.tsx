@@ -97,6 +97,7 @@ export interface CollabAPI {
 }
 
 interface PublicProps {
+  collabUrl?: string;
   excalidrawAPI: ExcalidrawImperativeAPI;
 }
 
@@ -404,7 +405,7 @@ class Collab extends PureComponent<Props, CollabState> {
     this.fallbackInitializationHandler = fallbackInitializationHandler;
 
     try {
-      const socketServerData = await getCollabServer();
+      const socketServerData = await getCollabServer(this.props.collabUrl);
 
       this.portal.socket = this.portal.open(
         socketIOClient(socketServerData.url, {

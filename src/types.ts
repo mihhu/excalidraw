@@ -267,6 +267,7 @@ export interface ExcalidrawProps {
   excalidrawRef?: ForwardRef<ExcalidrawAPIRefValue>;
   onCollabButtonClick?: () => void;
   isCollaborating?: boolean;
+  collabUrl?: string;
   onPointerUpdate?: (payload: {
     pointer: { x: number; y: number };
     button: "down" | "up";

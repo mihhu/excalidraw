@@ -259,6 +259,7 @@ import {
   isPointHittingLinkIcon,
   isLocalLink,
 } from "../element/Hyperlink";
+import Collab from "../excalidraw-app/collab/Collab";
 
 const deviceContextInitialValue = {
   isSmScreen: false,
@@ -537,6 +538,11 @@ class App extends React.Component<AppProps, AppState> {
               library={this.library}
               id={this.id}
               onImageAction={this.onImageAction}
+            />
+            <Collab
+              collabUrl={this.props.collabUrl}
+              // @ts-ignore
+              excalidrawAPI={this.props.excalidrawRef?.current}
             />
             <div className="excalidraw-textEditorContainer" />
             <div className="excalidraw-contextMenuContainer" />
