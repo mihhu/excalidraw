@@ -1,4 +1,4 @@
-export * from "./components";
+export { Collab, Excalidraw, ExcalidrawApp } from "./components";
 export {
   getSceneVersion,
   isInvisiblySmallElement,
