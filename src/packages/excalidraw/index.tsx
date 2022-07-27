@@ -1,4 +1,4 @@
-export { Excalidraw } from "./components";
+export * from "./components";
 export {
   getSceneVersion,
   isInvisiblySmallElement,
