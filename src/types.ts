@@ -267,7 +267,6 @@ export interface ExcalidrawProps {
   excalidrawRef?: ForwardRef<ExcalidrawAPIRefValue>;
   onCollabButtonClick?: () => void;
   isCollaborating?: boolean;
-  collabUrl?: string;
   onPointerUpdate?: (payload: {
     pointer: { x: number; y: number };
     button: "down" | "up";
@@ -313,6 +312,18 @@ export interface ExcalidrawProps {
     pointerDownState: PointerDownState,
   ) => void;
   onScrollChange?: (scrollX: number, scrollY: number) => void;
+}
+
+export interface CollabProps {
+  collabUrl?: string;
+  excalidrawAPI: ExcalidrawImperativeAPI;
+  modalIsShown?: boolean;
+  useTestEnv?: boolean;
+}
+
+export interface ExcalidrawAppProps {
+  excalidraw: ExcalidrawProps;
+  collab: CollabProps;
 }
 
 export type SceneData = {
