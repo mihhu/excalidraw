@@ -323,7 +323,7 @@ export interface CollabProps {
 
 export interface ExcalidrawAppProps {
   excalidraw: ExcalidrawProps;
-  collab: CollabProps;
+  collabUrl?: string;
 }
 
 export type SceneData = {
