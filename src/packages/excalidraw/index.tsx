@@ -1,4 +1,3 @@
-export { Collab, Excalidraw, ExcalidrawApp } from "./components";
 export {
   getSceneVersion,
   isInvisiblySmallElement,
@@ -43,3 +42,4 @@ export {
   sceneCoordsToViewportCoords,
   viewportCoordsToSceneCoords,
 } from "../../utils";
+export { Collab, Excalidraw, ExcalidrawApp } from "./components";

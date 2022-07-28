@@ -57,7 +57,7 @@ import {
 import { restore, restoreAppState } from "../../../data/restore";
 import { initializeScene } from "../../../excalidraw-app/index";
 
-import "../../../excalidraw-app/components/index.scss";
+import "../../../excalidraw-app/index.scss";
 
 import { updateStaleImageStatuses } from "../../../excalidraw-app/data/FileManager";
 import { newElementWith } from "../../../element/mutateElement";

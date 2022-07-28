@@ -115,6 +115,8 @@ class Collab extends PureComponent<CollabProps, CollabState> {
       username: importUsernameFromLocalStorage() || "",
       activeRoomLink: "",
     };
+
+    // @ts-ignore
     this.portal = new Portal(this);
     this.fileManager = new FileManager({
       getFiles: async (fileIds) => {
@@ -219,7 +221,7 @@ class Collab extends PureComponent<CollabProps, CollabState> {
       preventUnload(event);
     }
 
-    if (this.isCollaborating || this.portal.roomId) {
+    if (this.isCollaborating() || this.portal.roomId) {
       try {
         localStorage?.setItem(
           STORAGE_KEYS.LOCAL_STORAGE_KEY_COLLAB_FORCE_FLAG,
@@ -829,6 +831,7 @@ class Collab extends PureComponent<CollabProps, CollabState> {
 
 declare global {
   interface Window {
+    // @ts-ignoreQ
     collab: InstanceType<typeof Collab>;
   }
 }
