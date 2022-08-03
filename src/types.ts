@@ -30,6 +30,8 @@ import Library from "./data/library";
 import type { FileSystemHandle } from "./data/filesystem";
 import type { ALLOWED_IMAGE_MIME_TYPES, MIME_TYPES } from "./constants";
 
+export * from "./element/types";
+
 export type Point = Readonly<RoughPoint>;
 
 export type Collaborator = {

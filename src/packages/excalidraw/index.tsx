@@ -42,4 +42,7 @@ export {
   sceneCoordsToViewportCoords,
   viewportCoordsToSceneCoords,
 } from "../../utils";
+
+export * from "../../types";
+
 export { Collab, Excalidraw, ExcalidrawApp } from "./components";
