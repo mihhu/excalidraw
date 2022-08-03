@@ -43,6 +43,7 @@ export {
   viewportCoordsToSceneCoords,
 } from "../../utils";
 
+export type { ExcalidrawElement } from "../../types";
 export * from "../../types";
 
 export { Collab, Excalidraw, ExcalidrawApp } from "./components";
