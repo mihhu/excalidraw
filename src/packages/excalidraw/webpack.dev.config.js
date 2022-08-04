@@ -8,7 +8,7 @@ module.exports = {
   mode: "development",
   devtool: false,
   entry: {
-    "excalidraw.development": "../src/excalidraw-app/index.js",
+    "excalidraw.development": "./entry.js",
   },
   output: {
     path: path.resolve(__dirname, outputDir),
