@@ -380,6 +380,10 @@ class Collab extends PureComponent<CollabProps, CollabState> {
       );
     }
 
+    if (this.props.getRoomKey) {
+      this.props.getRoomKey(roomKey);
+    }
+
     const scenePromise = resolvablePromise<ImportedDataState | null>();
 
     this.setIsCollaborating(true);
