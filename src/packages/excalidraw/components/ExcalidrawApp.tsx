@@ -457,7 +457,11 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
         autoFocus={true}
       />
       {excalidrawAPI && (
-        <Collab collabUrl={props.collabUrl} excalidrawAPI={excalidrawAPI} />
+        <Collab
+          collabUrl={props.collabUrl}
+          getRoomKey={props.getRoomKey}
+          excalidrawAPI={excalidrawAPI}
+        />
       )}
       {errorMessage && (
         <ErrorDialog
