@@ -281,7 +281,9 @@ class Collab extends PureComponent<CollabProps, CollabState> {
       // that could have been saved in other tabs while we were collaborating
       resetBrowserStateVersions();
 
-      window.history.pushState({}, APP_NAME, window.location.origin);
+      if (!this.props.collabUrl) {
+        window.history.pushState({}, APP_NAME, window.location.origin);
+      }
       this.destroySocketClient();
 
       LocalData.fileStorage.reset();
@@ -371,7 +373,7 @@ class Collab extends PureComponent<CollabProps, CollabState> {
 
     if (existingRoomLinkData) {
       ({ roomId, roomKey } = existingRoomLinkData);
-    } else {
+    } else if (!this.props.collabUrl) {
       ({ roomId, roomKey } = await generateCollaborationLinkData());
       window.history.pushState(
         {},
