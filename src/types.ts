@@ -319,13 +319,15 @@ export interface ExcalidrawProps {
 export interface CollabProps {
   collabUrl?: string;
   excalidrawAPI: ExcalidrawImperativeAPI;
+  getCollabLink?: Function;
   modalIsShown?: boolean;
   useTestEnv?: boolean;
 }
 
 export interface ExcalidrawAppProps {
-  excalidraw: ExcalidrawProps;
   collabUrl?: string;
+  excalidraw: ExcalidrawProps;
+  getCollabLink?: Function;
 }
 
 export type SceneData = {

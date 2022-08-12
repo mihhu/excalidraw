@@ -208,6 +208,7 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
           excalidrawAPI.getSceneElementsIncludingDeleted(),
           excalidrawAPI.getAppState(),
         ),
+        // collaborationLink
       });
     });
 
@@ -459,7 +460,7 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
       {excalidrawAPI && (
         <Collab
           collabUrl={props.collabUrl}
-          getRoomKey={props.getRoomKey}
+          getCollabLink={props.getCollabLink}
           excalidrawAPI={excalidrawAPI}
         />
       )}

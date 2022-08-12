@@ -281,9 +281,9 @@ class Collab extends PureComponent<CollabProps, CollabState> {
       // that could have been saved in other tabs while we were collaborating
       resetBrowserStateVersions();
 
-      if (!this.props.collabUrl) {
-        window.history.pushState({}, APP_NAME, window.location.origin);
-      }
+      // if (!this.props.collabUrl) {
+      window.history.pushState({}, APP_NAME, window.location.origin);
+      // }
       this.destroySocketClient();
 
       LocalData.fileStorage.reset();
@@ -375,17 +375,17 @@ class Collab extends PureComponent<CollabProps, CollabState> {
       ({ roomId, roomKey } = existingRoomLinkData);
     } else {
       ({ roomId, roomKey } = await generateCollaborationLinkData());
-      if (!this.props.collabUrl) {
-        window.history.pushState(
-          {},
-          APP_NAME,
-          getCollaborationLink({ roomId, roomKey }),
-        );
-      }
+      // if (!this.props.collabUrl) {
+      window.history.pushState(
+        {},
+        APP_NAME,
+        getCollaborationLink({ roomId, roomKey }),
+      );
+      // }
     }
 
-    if (this.props.getRoomKey) {
-      this.props.getRoomKey(roomKey);
+    if (this.props.getCollabLink) {
+      this.props.getCollabLink({ roomId, roomKey });
     }
 
     const scenePromise = resolvablePromise<ImportedDataState | null>();
