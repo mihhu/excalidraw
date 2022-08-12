@@ -147,7 +147,7 @@ class Collab extends PureComponent<CollabProps, CollabState> {
     this.activeIntervalId = null;
     this.idleTimeoutId = null;
     isUsingTestingEnv = props.useTestEnv;
-    this.startCollaboration(null);
+    this.startCollaboration(props.collabLink || null);
   }
 
   componentDidMount() {

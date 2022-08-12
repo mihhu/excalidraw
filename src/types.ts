@@ -318,6 +318,7 @@ export interface ExcalidrawProps {
 
 export interface CollabProps {
   collabUrl?: string;
+  collabLink?: { roomId: string; roomKey: string };
   excalidrawAPI: ExcalidrawImperativeAPI;
   getCollabLink?: Function;
   modalIsShown?: boolean;
@@ -328,6 +329,7 @@ export interface ExcalidrawAppProps {
   collabUrl?: string;
   excalidraw: ExcalidrawProps;
   getCollabLink?: Function;
+  collabLink?: { roomId: string; roomKey: string };
 }
 
 export type SceneData = {
