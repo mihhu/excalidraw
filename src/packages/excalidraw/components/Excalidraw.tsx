@@ -39,6 +39,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
     handleKeyboardGlobally = false,
     onLibraryChange,
     autoFocus = false,
+    hideUserList = false,
     generateIdForFile,
     onLinkOpen,
     onPointerDown,
@@ -105,6 +106,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
           handleKeyboardGlobally={handleKeyboardGlobally}
           onLibraryChange={onLibraryChange}
           autoFocus={autoFocus}
+          hideUserList={hideUserList}
           generateIdForFile={generateIdForFile}
           onLinkOpen={onLinkOpen}
           onPointerDown={onPointerDown}

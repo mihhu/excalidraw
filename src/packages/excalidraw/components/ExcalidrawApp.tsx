@@ -439,7 +439,9 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
         ref={excalidrawRefCallback}
         onChange={onChange}
         initialData={initialStatePromiseRef.current.promise}
-        onCollabButtonClick={() => setCollabDialogShown(true)}
+        {...(!props.collabLink && {
+          onCollabButtonClick: () => setCollabDialogShown(true),
+        })}
         isCollaborating={isCollaborating}
         onPointerUpdate={collabAPI?.onPointerUpdate}
         UIOptions={{
@@ -456,11 +458,11 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
         detectScroll={false}
         handleKeyboardGlobally={true}
         autoFocus={true}
+        hideUserList={props.excalidraw.hideUserList}
       />
       {excalidrawAPI && (
         <Collab
           collabUrl={props.collabUrl}
-          getCollabLink={props.getCollabLink}
           collabLink={props.collabLink}
           excalidrawAPI={excalidrawAPI}
         />

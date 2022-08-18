@@ -147,7 +147,7 @@ class Collab extends PureComponent<CollabProps, CollabState> {
     this.activeIntervalId = null;
     this.idleTimeoutId = null;
     isUsingTestingEnv = props.useTestEnv;
-    this.startCollaboration(props.collabLink || null);
+    props.collabLink && this.startCollaboration(props.collabLink);
   }
 
   componentDidMount() {
@@ -382,10 +382,6 @@ class Collab extends PureComponent<CollabProps, CollabState> {
         getCollaborationLink({ roomId, roomKey }),
       );
       // }
-    }
-
-    if (this.props.getCollabLink) {
-      this.props.getCollabLink({ roomId, roomKey });
     }
 
     const scenePromise = resolvablePromise<ImportedDataState | null>();

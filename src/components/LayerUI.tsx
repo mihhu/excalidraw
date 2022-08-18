@@ -56,6 +56,7 @@ interface LayerUIProps {
   showThemeBtn: boolean;
   langCode: Language["code"];
   isCollaborating: boolean;
+  hideUserList?: boolean;
   renderTopRightUI?: ExcalidrawProps["renderTopRightUI"];
   renderCustomFooter?: ExcalidrawProps["renderFooter"];
   renderCustomStats?: ExcalidrawProps["renderCustomStats"];
@@ -80,6 +81,7 @@ const LayerUI = ({
   showExitZenModeBtn,
   showThemeBtn,
   isCollaborating,
+  hideUserList,
   renderTopRightUI,
   renderCustomFooter,
   renderCustomStats,
@@ -372,10 +374,12 @@ const LayerUI = ({
               },
             )}
           >
-            <UserList
-              collaborators={appState.collaborators}
-              actionManager={actionManager}
-            />
+            {!hideUserList && (
+              <UserList
+                collaborators={appState.collaborators}
+                actionManager={actionManager}
+              />
+            )}
             {renderTopRightUI?.(device.isMobile, appState)}
           </div>
         </div>
