@@ -461,6 +461,7 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
         <Collab
           collabUrl={props.collabUrl}
           getCollabLink={props.getCollabLink}
+          collabLink={props.collabLink}
           excalidrawAPI={excalidrawAPI}
         />
       )}
