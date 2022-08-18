@@ -46,4 +46,6 @@ export {
 export type { ExcalidrawElement } from "../../types";
 export * from "../../types";
 
+export { generateCollaborationLinkData } from "../../excalidraw-app/data";
+
 export { Collab, Excalidraw, ExcalidrawApp } from "./components";
