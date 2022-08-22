@@ -1,5 +1,5 @@
 import LanguageDetector from "i18next-browser-languagedetector";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { trackEvent } from "../../../analytics";
 import { ErrorDialog } from "../../../components/ErrorDialog";
 import { TopErrorBoundary } from "../../../components/TopErrorBoundary";
@@ -341,23 +341,13 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
     languageDetector.cacheUserLanguage(langCode);
   }, [langCode]);
 
-  const handleUsernameUpdate = useCallback(
-    (e: any) => {
-      if (!collabAPI || e.key !== STORAGE_KEYS.LOCAL_STORAGE_COLLAB) {
-        return;
-      }
-
-      const username = importUsernameFromLocalStorage();
-      collabAPI.setUsername(username || "");
-    },
-    [collabAPI],
-  );
-
   useEffect(() => {
-    window.addEventListener("storage", handleUsernameUpdate);
+    if (!collabAPI || !props.getCollabAPI) {
+      return;
+    }
 
-    return () => window.removeEventListener("storage", handleUsernameUpdate);
-  }, [handleUsernameUpdate]);
+    props.getCollabAPI(collabAPI);
+  }, [collabAPI, props]);
 
   const onChange = (
     elements: readonly ExcalidrawElement[],
