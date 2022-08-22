@@ -1,22 +1,11 @@
 import LanguageDetector from "i18next-browser-languagedetector";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { trackEvent } from "../../../analytics";
-import { getDefaultAppState } from "../../../appState";
 import { ErrorDialog } from "../../../components/ErrorDialog";
 import { TopErrorBoundary } from "../../../components/TopErrorBoundary";
-import {
-  APP_NAME,
-  EVENT,
-  TITLE_TIMEOUT,
-  VERSION_TIMEOUT,
-} from "../../../constants";
-import {
-  ExcalidrawElement,
-  FileId,
-  NonDeletedExcalidrawElement,
-} from "../../../element/types";
+import { EVENT, VERSION_TIMEOUT } from "../../../constants";
+import { ExcalidrawElement, FileId } from "../../../element/types";
 import { useCallbackRefState } from "../../../hooks/useCallbackRefState";
-import { t } from "../../../i18n";
 import { Excalidraw, defaultLang } from "../index";
 import {
   AppState,
@@ -45,10 +34,7 @@ import {
   collabDialogShownAtom,
   isCollaboratingAtom,
 } from "./Collab";
-import {
-  exportToBackend,
-  isCollaborationLink,
-} from "../../../excalidraw-app/data";
+import { isCollaborationLink } from "../../../excalidraw-app/data";
 import {
   getLibraryItemsFromStorage,
   importFromLocalStorage,
@@ -237,10 +223,10 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
       }
     };
 
-    const titleTimeout = setTimeout(
-      () => (document.title = APP_NAME),
-      TITLE_TIMEOUT,
-    );
+    // const titleTimeout = setTimeout(
+    //   () => (document.title = APP_NAME),
+    //   TITLE_TIMEOUT,
+    // );
 
     const syncData = debounce(() => {
       if (isTestEnv()) {
@@ -328,7 +314,7 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
         visibilityChange,
         false,
       );
-      clearTimeout(titleTimeout);
+      // clearTimeout(titleTimeout);
     };
   }, [collabAPI, excalidrawAPI]);
 
@@ -354,6 +340,24 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
   useEffect(() => {
     languageDetector.cacheUserLanguage(langCode);
   }, [langCode]);
+
+  const handleUsernameUpdate = useCallback(
+    (e: any) => {
+      if (!collabAPI || e.key !== STORAGE_KEYS.LOCAL_STORAGE_COLLAB) {
+        return;
+      }
+
+      const username = importUsernameFromLocalStorage();
+      collabAPI.setUsername(username || "");
+    },
+    [collabAPI],
+  );
+
+  useEffect(() => {
+    window.addEventListener("storage", handleUsernameUpdate);
+
+    return () => window.removeEventListener("storage", handleUsernameUpdate);
+  }, [handleUsernameUpdate]);
 
   const onChange = (
     elements: readonly ExcalidrawElement[],
@@ -396,37 +400,6 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
     }
   };
 
-  const onExportToBackend = async (
-    exportedElements: readonly NonDeletedExcalidrawElement[],
-    appState: AppState,
-    files: BinaryFiles,
-    canvas: HTMLCanvasElement | null,
-  ) => {
-    if (exportedElements.length === 0) {
-      return window.alert(t("alerts.cannotExportEmptyCanvas"));
-    }
-    if (canvas) {
-      try {
-        await exportToBackend(
-          exportedElements,
-          {
-            ...appState,
-            viewBackgroundColor: appState.exportBackground
-              ? appState.viewBackgroundColor
-              : getDefaultAppState().viewBackgroundColor,
-          },
-          files,
-        );
-      } catch (error: any) {
-        if (error.name !== "AbortError") {
-          const { width, height } = canvas;
-          console.error(error, { width, height });
-          setErrorMessage(error.message);
-        }
-      }
-    }
-  };
-
   return (
     <div
       style={{ height: "100%" }}
@@ -444,13 +417,6 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
         })}
         isCollaborating={isCollaborating}
         onPointerUpdate={collabAPI?.onPointerUpdate}
-        UIOptions={{
-          canvasActions: {
-            export: {
-              onExportToBackend,
-            },
-          },
-        }}
         renderTopRightUI={props.excalidraw.renderTopRightUI}
         renderFooter={props.excalidraw.renderFooter}
         langCode={langCode}
