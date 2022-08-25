@@ -103,7 +103,7 @@ export class LocalData {
   };
 
   static isSavePaused = () => {
-    return document.hidden || this.locker.isLocked();
+    return document.hidden || LocalData.locker.isLocked();
   };
 
   // ---------------------------------------------------------------------------
