@@ -302,6 +302,8 @@ export interface ExcalidrawProps {
   handleKeyboardGlobally?: boolean;
   onLibraryChange?: (libraryItems: LibraryItems) => void | Promise<any>;
   autoFocus?: boolean;
+  hideIOActions?: boolean;
+  hideLibraries?: boolean;
   hideUserList?: boolean;
   generateIdForFile?: (file: File) => string | Promise<string>;
   onLinkOpen?: (
@@ -328,8 +330,11 @@ export interface CollabProps {
 
 export interface ExcalidrawAppProps {
   collabUrl?: string;
-  excalidraw: ExcalidrawProps;
   collabLink?: { roomId: string; roomKey: string };
+  excalidraw: ExcalidrawProps;
+  getCollabAPI?: Function;
+  hideIOActions?: Function;
+  hideLibraries?: Boolean;
 }
 
 export type SceneData = {

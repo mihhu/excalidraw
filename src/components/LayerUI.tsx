@@ -56,6 +56,8 @@ interface LayerUIProps {
   showThemeBtn: boolean;
   langCode: Language["code"];
   isCollaborating: boolean;
+  hideIOActions?: boolean;
+  hideLibraries?: boolean;
   hideUserList?: boolean;
   renderTopRightUI?: ExcalidrawProps["renderTopRightUI"];
   renderCustomFooter?: ExcalidrawProps["renderFooter"];
@@ -81,6 +83,8 @@ const LayerUI = ({
   showExitZenModeBtn,
   showThemeBtn,
   isCollaborating,
+  hideIOActions,
+  hideLibraries,
   hideUserList,
   renderTopRightUI,
   renderCustomFooter,
@@ -196,21 +200,23 @@ const LayerUI = ({
          see https://github.com/excalidraw/excalidraw/pull/1445 */}
       <Island padding={2} style={{ zIndex: 1 }}>
         <Stack.Col gap={4}>
-          <Stack.Row gap={1} justifyContent="space-between">
-            {actionManager.renderAction("clearCanvas")}
-            <Separator />
-            {actionManager.renderAction("loadScene")}
-            {renderJSONExportDialog()}
-            {renderImageExportDialog()}
-            <Separator />
-            {onCollabButtonClick && (
-              <CollabButton
-                isCollaborating={isCollaborating}
-                collaboratorCount={appState.collaborators.size}
-                onClick={onCollabButtonClick}
-              />
-            )}
-          </Stack.Row>
+          {hideIOActions && (
+            <Stack.Row gap={1} justifyContent="space-between">
+              {actionManager.renderAction("clearCanvas")}
+              <Separator />
+              {actionManager.renderAction("loadScene")}
+              {renderJSONExportDialog()}
+              {renderImageExportDialog()}
+              <Separator />
+              {onCollabButtonClick && (
+                <CollabButton
+                  isCollaborating={isCollaborating}
+                  collaboratorCount={appState.collaborators.size}
+                  onClick={onCollabButtonClick}
+                />
+              )}
+            </Stack.Row>
+          )}
           <BackgroundPickerAndDarkModeToggle
             actionManager={actionManager}
             appState={appState}
@@ -357,10 +363,12 @@ const LayerUI = ({
                         />
                       </Stack.Row>
                     </Island>
-                    <LibraryButton
-                      appState={appState}
-                      setAppState={setAppState}
-                    />
+                    {!hideLibraries && (
+                      <LibraryButton
+                        appState={appState}
+                        setAppState={setAppState}
+                      />
+                    )}
                   </Stack.Row>
                 </Stack.Col>
               )}

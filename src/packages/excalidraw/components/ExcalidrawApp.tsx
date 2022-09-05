@@ -414,7 +414,6 @@ const ExcalidrawWrapper = (props: ExcalidrawAppProps) => {
         detectScroll={false}
         handleKeyboardGlobally={true}
         autoFocus={true}
-        hideUserList={props.excalidraw.hideUserList}
       />
       {excalidrawAPI && (
         <Collab
