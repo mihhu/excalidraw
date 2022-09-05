@@ -1813,7 +1813,7 @@ class App extends React.Component<AppProps, AppState> {
         this.setState({ isBindingEnabled: false });
       }
 
-      if (event.code === CODES.ZERO) {
+      if (event.code === CODES.ZERO && !this.props.hideLibraries) {
         const nextState = !this.state.isLibraryOpen;
         this.setState({ isLibraryOpen: nextState });
         // track only openings
