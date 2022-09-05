@@ -499,6 +499,7 @@ const LayerUI = ({
       )}
       {appState.showHelpDialog && (
         <HelpDialog
+          hideLibraries={hideLibraries}
           onClose={() => {
             setAppState({ showHelpDialog: false });
           }}
