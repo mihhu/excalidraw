@@ -200,7 +200,7 @@ const LayerUI = ({
          see https://github.com/excalidraw/excalidraw/pull/1445 */}
       <Island padding={2} style={{ zIndex: 1 }}>
         <Stack.Col gap={4}>
-          {hideIOActions && (
+          {!hideIOActions && (
             <Stack.Row gap={1} justifyContent="space-between">
               {actionManager.renderAction("clearCanvas")}
               <Separator />
