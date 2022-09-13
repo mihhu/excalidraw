@@ -522,6 +522,7 @@ class App extends React.Component<AppProps, AppState> {
               isCollaborating={this.props.isCollaborating}
               hideIOActions={this.props.hideIOActions}
               hideLibraries={this.props.hideLibraries}
+              hideLockButton={this.props.hideLockButton}
               hideUserList={this.props.hideUserList}
               renderTopRightUI={renderTopRightUI}
               renderCustomFooter={renderFooter}

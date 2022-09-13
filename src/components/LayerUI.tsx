@@ -58,6 +58,7 @@ interface LayerUIProps {
   isCollaborating: boolean;
   hideIOActions?: boolean;
   hideLibraries?: boolean;
+  hideLockButton?: boolean;
   hideUserList?: boolean;
   renderTopRightUI?: ExcalidrawProps["renderTopRightUI"];
   renderCustomFooter?: ExcalidrawProps["renderFooter"];
@@ -85,6 +86,7 @@ const LayerUI = ({
   isCollaborating,
   hideIOActions,
   hideLibraries,
+  hideLockButton,
   hideUserList,
   renderTopRightUI,
   renderCustomFooter,
@@ -331,12 +333,14 @@ const LayerUI = ({
                       title={t("toolBar.penMode")}
                       penDetected={appState.penDetected}
                     />
-                    <LockButton
-                      zenModeEnabled={appState.zenModeEnabled}
-                      checked={appState.activeTool.locked}
-                      onChange={() => onLockToggle()}
-                      title={t("toolBar.lock")}
-                    />
+                    {!hideLockButton && (
+                      <LockButton
+                        zenModeEnabled={appState.zenModeEnabled}
+                        checked={appState.activeTool.locked}
+                        onChange={() => onLockToggle()}
+                        title={t("toolBar.lock")}
+                      />
+                    )}
                     <Island
                       padding={1}
                       className={clsx("App-toolbar", {

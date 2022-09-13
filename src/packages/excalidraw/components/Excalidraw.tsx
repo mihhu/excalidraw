@@ -41,6 +41,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
     autoFocus = false,
     hideIOActions = false,
     hideLibraries = false,
+    hideLockButton = false,
     hideUserList = false,
     generateIdForFile,
     onLinkOpen,
@@ -110,6 +111,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
           autoFocus={autoFocus}
           hideIOActions={hideIOActions}
           hideLibraries={hideLibraries}
+          hideLockButton={hideLockButton}
           hideUserList={hideUserList}
           generateIdForFile={generateIdForFile}
           onLinkOpen={onLinkOpen}

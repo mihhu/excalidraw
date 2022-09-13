@@ -304,6 +304,7 @@ export interface ExcalidrawProps {
   autoFocus?: boolean;
   hideIOActions?: boolean;
   hideLibraries?: boolean;
+  hideLockButton?: boolean;
   hideUserList?: boolean;
   generateIdForFile?: (file: File) => string | Promise<string>;
   onLinkOpen?: (
